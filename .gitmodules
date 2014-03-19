@@ -1,0 +1,3 @@
+[submodule "jurassic"]
+	path = jurassic
+	url = https://github.com/dcodeIO/jurassic.git
