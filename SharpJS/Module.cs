@@ -32,9 +32,8 @@ namespace SharpJS
             PopulateFunctions();
         }
 
-        public object Require(string name) {
-            // TODO
-            throw new JavaScriptException(Engine, "Error", "Cannot find module '" + name + "'");
+        public virtual object Require(string name) {
+            return Context.TryRequire(name);
         }
 
         public virtual Module RegisterGlobals() {

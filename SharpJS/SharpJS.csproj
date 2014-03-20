@@ -90,6 +90,9 @@
       <Link>.gitignore</Link>
     </Content>
     <Content Include="Tests\Buffer.js" />
+    <Content Include="Tests\sub\requireme.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Tests\test.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

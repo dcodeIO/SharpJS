@@ -1,6 +1,7 @@
 ![SharpJS](https://raw.github.com/dcodeIO/SharpJS/master/SharpJS.png)
 =====================================================================
-**SharpJS** is an embeddable, event-driven, node.js-like JavaScript environment for the Mono/.NET platform.
+
+**SharpJS** is an embeddable, node.js-like JavaScript environment for Mono and .NET.
 
 Implemented
 -----------

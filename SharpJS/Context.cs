@@ -90,7 +90,6 @@ namespace SharpJS
             Engine.PopulateGlobals();
             GlobalObject global = Engine.Global;
             global.SetPropertyValue("global", global, true);
-            global.SetPropertyValue("require", new RequireFunction(this), true);
             global.SetPropertyValue("process", Process.Instance, true);
             foreach (KeyValuePair<string,object> kv in Modules) {
                 if (kv.Value is Module)
@@ -159,29 +158,11 @@ namespace SharpJS
             Process.Instance.Emit("exit");
         }
 
-        public class RequireFunction : FunctionInstance
-        {
-            public Context Context;
-
-            public RequireFunction(Context context)
-                : base(context.Engine.Function.InstancePrototype) {
-                Context = context;
-            }
-
-            public override object CallLateBound(object thisObject, params object[] argumentValues) {
-                if (argumentValues.Length == 0)
-                    throw new JavaScriptException(Context.Engine, "TypeError", "null");
-                return Context.Require(Context.ExecutingModule, argumentValues[0] as string);
-            }
-        }
-
-        public object Require(Module callingModule, string name) {
+        public object TryRequire(string name) {
             object exports = null;
             if (Modules.TryGetValue(name, out exports))
                 return exports;
-            if (callingModule != null)
-                return callingModule.Require(name);
-            throw new JavaScriptException(Engine, "Error", "Cannot find module '" + name + "'");
+            return null;
         }
 
         public bool HandleUncaughtException(Exception ex) {

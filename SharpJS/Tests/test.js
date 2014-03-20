@@ -109,3 +109,6 @@ fs.writeFile("test.txt", "hello", function (err) {
         });
     });
 });
+
+console.log("require: "+require("sub/requireme"));
+console.log("require.cache: " + Object.keys(require.cache));
